@@ -72,6 +72,8 @@ Before you begin, ensure you have met the following requirements:
     # The client ID for the Asgardeo Single Page Application (SPA) application.
     VITE_REACT_APP_CLIENT_ID="<YOUR_APPLICATION_CLIENT_ID>"
 
+    VITE_REACT_APP_ASGARDEO_REGISTRATION_URL="https://accounts.asgardeo.io/t/<ORG-NAME>/accountrecoveryendpoint/register.do?client_id=<CLIENT-ID>&sp=<APP-NAME>""
+
     # The base URL for the Asgardeo organization's API
     # E.g., https://api.asgardeo.io/t/your-organization-name
     VITE_REACT_APP_ASGARDEO_BASE_URL="https://api.asgardeo.io/t/<YOUR_ORGANIZATION_NAME>"

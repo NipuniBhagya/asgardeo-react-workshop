@@ -34,7 +34,7 @@ export const LandingPage = () => {
                         <button onClick={ () => signIn() }>Sign In</button>
                     )
                 }
-                <button onClick={ () => navigate("/signup") }>Create Account</button>
+                <button onClick={ () => window.location.href = import.meta.env.VITE_REACT_APP_ASGARDEO_REGISTRATION_URL }>Create Account</button>
             </div>
             </div>
         </div>

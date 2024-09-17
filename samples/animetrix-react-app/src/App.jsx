@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { useAuthContext } from "@asgardeo/auth-react";
 import AppRouter from "./components/AppRouter";
 import { Loader } from "./components/Loader";
+import { getAppRoutes } from "./configs/Routes";
 
 function App() {
     const { state, getDecodedIDToken } = useAuthContext();
