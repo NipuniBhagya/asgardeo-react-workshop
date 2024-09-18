@@ -1,4 +1,4 @@
-# Animetrix: Anime Streaming Site
+![image](https://github.com/user-attachments/assets/ea9ef8c5-50c2-4264-a487-283d1f4de97f)
 
 Welcome to Animetrix! This is a demo project designed to showcase how to simplify React app login with Asgardeo and the Asgardeo React SDK. Animetrix is an anime streaming site where users can browse and watch their favorite anime shows.
 
@@ -67,16 +67,23 @@ Before you begin, ensure you have met the following requirements:
     ```env
     # The base URL for the client application
     # E.g., http://localhost:5173
-    VITE_REACT_APP_BASE_URL="http://localhost:5173/"
+    VITE_REACT_APP_BASE_URL="<YOUR_APPLICATION_BASE_URL>"
 
     # The client ID for the Asgardeo Single Page Application (SPA) application.
     VITE_REACT_APP_CLIENT_ID="<YOUR_APPLICATION_CLIENT_ID>"
 
-    VITE_REACT_APP_ASGARDEO_REGISTRATION_URL="https://accounts.asgardeo.io/t/<ORG-NAME>/accountrecoveryendpoint/register.do?client_id=<CLIENT-ID>&sp=<APP-NAME>""
-
     # The base URL for the Asgardeo organization's API
     # E.g., https://api.asgardeo.io/t/your-organization-name
     VITE_REACT_APP_ASGARDEO_BASE_URL="https://api.asgardeo.io/t/<YOUR_ORGANIZATION_NAME>"
+
+    # The sign-up URL for the Asgardeo organization
+    VITE_REACT_APP_ASGARDEO_SIGN_UP_URL="https://accounts.asgardeo.io/t/<YOUR_ORGANIZATION_NAME>/accountrecoveryendpoint/register.do?client_id="
+
+    # The application name for the Asgardeo application
+    VITE_REACT_APP_NAME="<YOUR_APPLICATION_NAME>"
+
+    # The organization name for the Asgardeo
+    VITE_REACT_APP_ORG_NAME="<YOUR_ORGANIZATION_NAME>"
 
     VITE_REACT_APP_RESOURCE_SERVER_URLS=["https://bdc81b0c-bae6-43e8-b4aa-0702a82aee77-prod.e1-us-east-azure.choreoapis.dev/animetrix/movie-catalog-service/v1.0/categories"]
     ```
