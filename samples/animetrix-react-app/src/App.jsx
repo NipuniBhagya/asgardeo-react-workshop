@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { useAuthContext } from "@asgardeo/auth-react";
 import AppRouter from "./components/AppRouter";
@@ -8,33 +8,39 @@ import { getAppRoutes } from "./configs/Routes";
 
 function App() {
     const { state, getDecodedIDToken } = useAuthContext();
-    const [userRoles, setUserRoles] = useState(undefined);
+    const [ userRoles, setUserRoles ] = useState(undefined);
     
-    const router = createBrowserRouter(getAppRoutes(userRoles));
-
     // Fetch the user roles and update the state
-    const fetchUserRoles = useCallback(async () => {
-        try {
-            const decodedIdToken = await getDecodedIDToken();
-            if (decodedIdToken?.application_roles && decodedIdToken.application_roles.length > 0) {
-                setUserRoles(decodedIdToken.application_roles);
-            }
-        } catch (error) {
-            console.error("Error occurred while decoding the ID token", error);
-        }
-    }, [ getDecodedIDToken ]);
-
     useEffect(() => {
-        fetchUserRoles();
-    }, [ fetchUserRoles ]);
-    
-    if (state.isAuthenticated && userRoles === undefined) {
-        return <Loader />;
-    }
+        const fetchUserRoles = async () => {
+            try {
+                const decodedIdToken = await getDecodedIDToken();
+
+                if (!decodedIdToken?.roles) {
+                    return;
+                }
+
+                if (decodedIdToken?.roles && decodedIdToken?.roles?.length > 0) {
+                    setUserRoles(decodedIdToken.roles);
+                }
+            } catch (error) {
+                console.error("Error occurred while decoding the ID token", error);
+            }
+        };
+
+        if (state?.isAuthenticated) {
+            fetchUserRoles();
+        }
+    }, [ getDecodedIDToken, state?.isAuthenticated ]);
+
+    // Memoize the router to avoid recreating it on every render
+    const router = useMemo(() => {
+        return createBrowserRouter(getAppRoutes(userRoles));
+    }, [ userRoles ]);
 
     return (
         <div>
-            <AppRouter router={ router } />
+            { router ? <AppRouter router={ router } /> : <Loader /> }
         </div>
     );
 }
